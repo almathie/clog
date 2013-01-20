@@ -1,0 +1,6 @@
+mongodb:
+    host: localhost
+    port: 27017
+    database: clog
+    #username: user
+    #password: password
