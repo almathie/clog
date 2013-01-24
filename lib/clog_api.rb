@@ -26,7 +26,7 @@ module Clog
 				puts request.inspect
 				project_tags = project_hash["tags"]
 
-				message = LogMessage.create(params)
+				message = LogMessage.new(params)
 				message_hash = message.serializable_hash
 				message_hash["tags"] = project_tags.merge(message_hash["tags"]) unless project_tags.nil?
 				col = MongoMapper.database.collection("#{params[:user]}.#{params[:project]}.logs")
