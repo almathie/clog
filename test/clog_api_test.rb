@@ -36,4 +36,14 @@ class ClogAPITest < Test::Unit::TestCase
     assert_equal 'log message', message_hash["message"]
     assert_not_nil message_hash["created_at"]
   end
+
+  def test_log_message_with_tags
+    post '/users/test-user/projects/test-project-1/logs', :message => "log message", :tags => {"message-tag-1" => "message tag value 1", "message-tag-2" => "value 2"}
+    assert last_response.ok?
+    message_hash =  MongoMapper.database.collection("test-user.test-project-1.logs").find_one
+    assert_equal 'log message', message_hash["message"]
+    assert_equal "message tag value 1", message_hash["tags"]["message-tag-1"]
+    assert_equal "value 2", message_hash["tags"]["message-tag-2"]
+    assert_not_nil message_hash["created_at"]
+  end
 end
