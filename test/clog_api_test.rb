@@ -13,7 +13,9 @@ class ClogAPITest < Test::Unit::TestCase
   end
 
   def setup
-    MongoMapper.database.command(:dropDatabase => 1)
+    MongoMapper.database.drop_collection("projects")
+    MongoMapper.database.drop_collection("test-user.test-project-1.logs")
+    MongoMapper.database.drop_collection("test-user.test-project-2.logs")
     # Create a sample project
     project_1 = Hash.new
     project_1["name"] = "test-project-1"
