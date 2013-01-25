@@ -25,7 +25,7 @@ module Clog
 
 				message = LogMessage.new(params)
 				message_hash = message.serializable_hash
-				message_hash.created_at = Time.now
+				message_hash["created_at"] = Time.now
 				message_hash["tags"] = project_tags.merge(message_hash["tags"]) unless project_tags.nil?
 				col = MongoMapper.database.collection("#{params[:user]}.#{params[:project]}.logs")
 				col.insert(message_hash)
