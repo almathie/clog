@@ -3,6 +3,7 @@ require 'bundler/setup'
 
 namespace "user" do
 
+	desc "Create a user with a random access token"
 	task :create, [:name] => [:environment] do |t, args|
 		user = Hash.new
 		user["name"] = args.name
