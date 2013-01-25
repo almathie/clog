@@ -1,5 +1,7 @@
 require 'rubygems'
 require 'bundler/setup'
+require 'rake'
+require 'rake/testtask'
 
 namespace "user" do
 
@@ -14,6 +16,11 @@ namespace "user" do
 		puts "Generated user #{args.name} with admin token: #{token_value}"
 	end
 end
+
+desc "Run basic tests"
+Rake::TestTask.new("test") { |t|
+  t.pattern = 'test/*_test.rb'
+}
 
 task :environment do |t|
 	require File.join(File.dirname(__FILE__), 'environment')
