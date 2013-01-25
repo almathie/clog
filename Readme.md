@@ -13,7 +13,10 @@ Each log message is sent by a user, and is linked to a specific project. Tags ca
 ## Installation and usage
 
 ### 1. Configure your database
-Edit config/config.yml
+Edit `config/mongodb.yml`
+
+Then environment is read in the `RACK_ENV` environment variable and defaults to 'development'.
+Tests are always run in the 'test' environment.
 
 ### 2. Install the gems
     gem install bundle

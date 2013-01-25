@@ -1,0 +1,14 @@
+development: &default
+    host: localhost
+    port: 27017
+    database: clog-dev
+    #username: user
+    #password: password
+
+test: 
+    <<: *default
+    database: clog-test
+
+production: 
+    <<: *default
+    database: clog
