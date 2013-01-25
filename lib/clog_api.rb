@@ -21,9 +21,6 @@ module Clog
 				project = Project.first(:name => params[:project], :user => params[:user])
 				return 404 unless project
 				project_hash= project.serializable_hash
-				puts ""
-				puts ""
-				puts request.inspect
 				project_tags = project_hash["tags"]
 
 				message = LogMessage.new(params)
