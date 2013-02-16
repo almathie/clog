@@ -80,3 +80,9 @@ class ClogAPITest < Test::Unit::TestCase
     assert_nil message_hash["tags"]["project-tag-1"]
     assert_not_nil message_hash["created_at"]
   end
+
+  def test_log_message_with_non_string_tag
+    post '/users/test-user/projects/test-project-2/logs', :message => "log message", :tags => {"message-tag-1" => {"key-1" => "value-1"}}
+    assert_equal 400, last_response.status 
+  end
+end
