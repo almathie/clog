@@ -31,7 +31,7 @@ class ClogAPITest < Test::Unit::TestCase
 
   end
 
-  def test_basic_log_message
+  def test_log_message
     post '/users/test-user/projects/test-project-1/logs', :message => "log message"
     assert last_response.ok?
     message_hash =  MongoMapper.database.collection("test-user.test-project-1.logs").find_one
@@ -59,7 +59,7 @@ class ClogAPITest < Test::Unit::TestCase
     assert_not_nil message_hash["created_at"]
   end
 
-  def test_message_tags_over_project_tags
+  def test_log_message_with_tags_over_project_tags
     post '/users/test-user/projects/test-project-2/logs', :message => "log message", :tags => {"message-tag-1" => "message tag value 1", "project-tag-2" => "message value 2"}
     assert last_response.ok?
     message_hash =  MongoMapper.database.collection("test-user.test-project-2.logs").find_one
